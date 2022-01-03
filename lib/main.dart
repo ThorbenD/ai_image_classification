@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:get/get.dart';
 import 'dart:async';
-import 'camera/camera_screen.dart';
-import 'classification/image_classification_screen.dart';
-import 'classification/item_description_dialog.dart';
-import 'home/home.dart';
-import 'item_catalog/item_catalog_screen.dart';
+import 'screens/camera/camera_screen.dart';
+import 'screens/classification/image_classification_screen.dart';
+import 'screens/classification/item_description_dialog.dart';
+import 'screens/home/home.dart';
+import 'screens/item_catalog/item_catalog_screen.dart';
 
 Future<void> main() async {
   try {
