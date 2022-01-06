@@ -1,3 +1,4 @@
+import 'package:ai_image_classification/screens/camera/captures_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePageWidget(),
         '/camera': (context) => CameraScreen(),
-        // '/camera/captures': (context) => CapturesScreen(imageFileList: null),
+        '/camera/captures': (context) => CapturesScreen(),
         '/camera/classification': (context) => ImageClassificationScreen(),
         '/item/catalog': (context) => ItemCatalogScreen(),
         '/item/description': (context) => ItemDescriptionDialog(),

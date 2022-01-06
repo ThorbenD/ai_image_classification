@@ -2,12 +2,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class CapturesScreen extends StatelessWidget {
-  final List<File> imageFileList;
-
-  const CapturesScreen({required this.imageFileList});
+  const CapturesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var _imageList = ModalRoute.of(context)?.settings.arguments as List<dynamic>;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -40,7 +39,7 @@ class CapturesScreen extends StatelessWidget {
                     physics: NeverScrollableScrollPhysics(),
                     crossAxisCount: 2,
                     children: [
-                      for (File imageFile in imageFileList)
+                      for (File imageFile in _imageList)
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -49,7 +48,7 @@ class CapturesScreen extends StatelessWidget {
                             ),
                           ),
                           child: InkWell(
-                            onLongPress: () => imageFileList.remove(imageFile),
+                            onLongPress: () => _imageList.remove(imageFile),
                             onTap: () {
                               Navigator.pushReplacementNamed(context, '/image/classification', arguments: imageFile);
                             },

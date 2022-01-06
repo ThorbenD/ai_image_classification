@@ -288,10 +288,7 @@ class _CameraScreenState extends State<CameraScreen> with WidgetsBindingObserver
                         onPressed: () async {
                           XFile? rawImage = await takePicture();
                           if(rawImage == null) return;
-                          //await saveFileToAppDirectory(rawImage);
-
-                          var file = File(rawImage.path);
-                          Navigator.pushReplacementNamed(context, '/camera/classification', arguments: file);
+                          Navigator.pushReplacementNamed(context, '/camera/classification', arguments: rawImage);
                         },
                         iconSize: 50,
                         icon: Icon(
@@ -304,10 +301,7 @@ class _CameraScreenState extends State<CameraScreen> with WidgetsBindingObserver
                         onTap: () async {
                           XFile? rawImage = await _imgFromGallery();
                           if(rawImage == null) return;
-                          //await saveFileToAppDirectory(rawImage);
-
-                          var file = File(rawImage.path);
-                          Navigator.pushReplacementNamed(context, 'camera/classification', arguments: file);
+                          Navigator.pushReplacementNamed(context, '/camera/classification', arguments: rawImage);
                         },
                         child: Container(
                           width: 55,
@@ -319,12 +313,10 @@ class _CameraScreenState extends State<CameraScreen> with WidgetsBindingObserver
                               color: Colors.white,
                               width: 2,
                             ),
-                            image: _imageFile != null
-                                ? DecorationImage(
-                                    image: FileImage(_imageFile!),
+                            image: DecorationImage(
+                                    image: AssetImage('assets/images/sbahn/sbahn_00.jpeg'),
                                     fit: BoxFit.cover,
-                                  )
-                                : null,
+                                  ),
                           ),
                         ),
                       )

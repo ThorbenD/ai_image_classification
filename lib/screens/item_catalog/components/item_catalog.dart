@@ -52,7 +52,7 @@ class ItemCatalog extends StatelessWidget {
           const Image(image: AssetImage("assets/images/suewex/suewex_01.jpeg")),
           const Image(image: AssetImage("assets/images/suewex/suewex_02.jpeg")),
         ],
-        "https://de.wikipedia.org/wiki/SÜWEX"),
+        Uri.encodeFull('https://de.wikipedia.org/wiki/SÜWEX').toString()),
   ];
 
   get itemBox => BoxDecoration(
@@ -102,6 +102,7 @@ class ItemCatalog extends StatelessWidget {
                         Navigator.pushNamed(context, '/item/description', arguments: {
                           'image': null,
                           'classifiedObject': allTrains[0],
+                          'confidence': 1.0,
                         });
                       },
                       child: Container(
@@ -136,6 +137,7 @@ class ItemCatalog extends StatelessWidget {
                         Navigator.pushNamed(context, '/item/description', arguments: {
                           'image': null,
                           'classifiedObject': allTrains[1],
+                          'confidence': 1.0,
                         });
                       },
                       child: Container(
@@ -171,6 +173,7 @@ class ItemCatalog extends StatelessWidget {
                         Navigator.pushNamed(context, '/item/description', arguments: {
                           'image': null,
                           'classifiedObject': allTrains[2],
+                          'confidence': 1.0,
                         });
                       },
                       child: Container(
@@ -206,6 +209,7 @@ class ItemCatalog extends StatelessWidget {
                         Navigator.pushNamed(context, '/item/description', arguments: {
                           'image': null,
                           'classifiedObject': allTrains[3],
+                          'confidence': 1.0,
                         });
                       },
                       child: Container(

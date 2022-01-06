@@ -61,32 +61,6 @@ class ItemCatalogScreen extends StatelessWidget {
           ItemCatalog(),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CameraScreen(),
-            ),
-          );
-        },
-        child: Icon(Icons.add_a_photo),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: FABIntegratedNavBar(
-        backgroundColor: Colors.redAccent,
-        onTabSelected: (int value) {},
-        centerItemText: '',
-        color: Colors.white,
-        selectedColor: Colors.blue,
-        notchedShape: CircularNotchedRectangle(),
-        items: [
-          NavigationBarItem(iconData: Icons.home, text: 'Home', className: HomePageWidget()),
-          NavigationBarItem(iconData: Icons.search, text: 'Search', className: HomePageWidget()),
-          NavigationBarItem(iconData: Icons.book, text: 'Catalog', className: ItemCatalogScreen()),
-          NavigationBarItem(iconData: Icons.list, text: 'More', className: HomePageWidget()),
-        ],
-      ),
     );
   }
 }

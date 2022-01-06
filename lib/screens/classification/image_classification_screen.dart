@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:ai_image_classification/screens/item_catalog/components/item_catalog.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 
@@ -42,7 +43,7 @@ class _ImageClassificationScreenState extends State<ImageClassificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final File _image = ModalRoute.of(context)!.settings.arguments as File;
+    final XFile _image = ModalRoute.of(context)!.settings.arguments as XFile;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -60,29 +61,16 @@ class _ImageClassificationScreenState extends State<ImageClassificationScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: FutureBuilder<dynamic>(
-              future: _predictImage(_image),
+              future: _predictImage(File(_image.path)),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 List<Widget> children = <Widget>[];
                 if (snapshot.hasData) {
-                  // DBHelper()
-                  //     .getTrainBy(snapshot.data[0]['label'])
-                  //     .then((train) {
-                  //       if(train == null) return;
-                  //   children.add(
-                  //     Text(
-                  //       "${snapshot.data[0]['confidence'] * 100}% = ${train.name}",
-                  //       style: TextStyle(
-                  //         fontSize: 20,
-                  //         fontWeight: FontWeight.bold,
-                  //         color: Colors.white,
-                  //       ),
-                  //     ),
-                  //   );
                   WidgetsBinding.instance!.addPostFrameCallback((_) {
-                    Navigator.pushNamedAndRemoveUntil(context, '/item/description', (route) => route.isFirst,
+                    Navigator.pushReplacementNamed(context, '/item/description',
                         arguments: {
-                          'image': _image,
+                          'image': File(_image.path),
                           'classifiedObject': ItemCatalog.allTrains[snapshot.data[0]['index']],
+                          'confidence': snapshot.data[0]['confidence'],
                         });
                   });
                 } else if (snapshot.hasError) {

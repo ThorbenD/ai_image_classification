@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NavigationBarItem {
-  NavigationBarItem(
-      {required this.iconData, required this.text, required this.className});
+  NavigationBarItem({required this.iconData, required this.text});
 
   final IconData iconData;
   final String text;
-  final dynamic className;
 }
 
 class FABIntegratedNavBar extends StatefulWidget {
@@ -40,20 +38,12 @@ class FABIntegratedNavBar extends StatefulWidget {
 class FABIntegratedNavBarState extends State<FABIntegratedNavBar> {
   int _selectedIndex = 0;
 
-  _updateIndex(int index) {
-    widget.onTabSelected(index);
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     List<Widget> items = List.generate(widget.items.length, (int index) {
       return _buildTabItem(
         item: widget.items[index],
         index: index,
-        onPressed: _updateIndex,
       );
     });
     items.insert(items.length >> 1, _buildMiddleTabItem());
@@ -91,7 +81,6 @@ class FABIntegratedNavBarState extends State<FABIntegratedNavBar> {
   Widget _buildTabItem({
     required NavigationBarItem item,
     required int index,
-    required ValueChanged<int> onPressed,
   }) {
     Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
@@ -101,11 +90,8 @@ class FABIntegratedNavBarState extends State<FABIntegratedNavBar> {
           type: MaterialType.transparency,
           child: InkWell(
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => widget.items[index].className));
-              onPressed(index);
+              widget.onTabSelected(index);
+              _selectedIndex = index;
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,

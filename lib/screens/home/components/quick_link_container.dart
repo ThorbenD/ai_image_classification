@@ -1,5 +1,5 @@
 import 'package:ai_image_classification/screens/camera/camera_screen.dart';
-import 'package:ai_image_classification/screens/captures_screen.dart';
+import 'package:ai_image_classification/screens/camera/captures_screen.dart';
 import 'package:ai_image_classification/screens/item_catalog/item_catalog_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -25,12 +25,7 @@ class QuickLinkContainer extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           children: [
             InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ItemCatalogScreen(),
-                ),
-              ),
+              onTap: () => Navigator.pushNamed(context, '/item/catalog'),
               child: Container(
                 decoration: itemBox,
                 child: Column(
@@ -52,12 +47,7 @@ class QuickLinkContainer extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => CameraScreen(),
-                ),
-              ),
+              onTap: () => Navigator.pushNamed(context, '/camera'),
               child: Container(
                 decoration: itemBox,
                 child: Column(
@@ -79,14 +69,7 @@ class QuickLinkContainer extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CapturesScreen(imageFileList: []),
-                  ),
-                );
-              },
+              onTap: () => Navigator.pushNamed(context, '/camera/captures', arguments: []),
               child: Container(
                 decoration: itemBox,
                 child: Column(
